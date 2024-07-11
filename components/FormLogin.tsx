@@ -37,7 +37,7 @@ const FormLogin = () => {
         try {
             const token = await login(values)
             Cookies.set('token', token, { expires: 7 }); // Token sẽ hết hạn sau 7 ngày
-            router.push(`/home`)
+            window.location.href = '/';
         } catch (error: any) {
             setError(error.response.data.message);
 
