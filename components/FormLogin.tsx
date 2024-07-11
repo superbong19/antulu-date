@@ -35,8 +35,9 @@ const FormLogin = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchemaLogin>) => {
         try {
-            const token = await login(values)
+            const { token, userId } = await login(values)
             Cookies.set('token', token, { expires: 7 }); // Token sẽ hết hạn sau 7 ngày
+            Cookies.set('user', userId, { expires: 7 }); // Token sẽ hết hạn sau 7 ngày
             window.location.href = '/';
         } catch (error: any) {
             setError(error.response.data.message);
